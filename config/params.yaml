@@ -1,0 +1,33 @@
+carla_agent_controller:
+  ros__parameters:
+    host: "127.0.0.1"
+    port: 2000
+    hz: 20.0
+    time_out: 5.0
+    translation:
+      x: -81655.015625
+      y: 50135.9421875
+      z: 43.09799999999389
+    euler:
+      roll: 3.141592653589793
+      pitch: 0.0
+      yaw: 0.0
+
+
+# Town01
+# Town02
+# Town03
+# Town04
+# Town05
+# Town06
+# Town07
+
+# AWSIM-Nishishinjuku
+#  translation:
+#      x: -81655.015625
+#      y: 50135.9421875
+#      z: 43.09799999999389
+#    euler:
+#      roll: 3.141592653589793
+#      pitch: 0.0
+#      yaw: 0.0
