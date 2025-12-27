@@ -76,7 +76,7 @@ class CarlaEgoFollower(Node):
         # for managing the state of NPC
         self.npc_map = {}
 
-    def callback(self, msg):
+    def callback(self, msg: PredictedObjects) -> None:
         predictedObjects = msg.objects
         msg_uuid_set = set()
         if msg.objects is None:
@@ -98,7 +98,7 @@ class CarlaEgoFollower(Node):
 
         return
 
-    def get_carla_pose(self, ros_pose):
+    def get_carla_pose(self, ros_pose: PoseWithCovariance) -> carla.Transform:
         T_mgrs = np.eye(4, dtype=np.float64)
         q = np.array(
             [
@@ -138,7 +138,7 @@ class CarlaEgoFollower(Node):
 
         return spawn_pose
 
-    def update_npc(self, uuid, spawn_pose):
+    def update_npc(self, uuid: uuid.UUID, spawn_pose: carla.Transform) -> None:
         if uuid in self.npc_map:
             self.get_logger().info("object is already spawn")
             spawn_pose.location.z = self.npc_map[uuid].get_transform().location.z
@@ -154,11 +154,12 @@ class CarlaEgoFollower(Node):
                 self.get_logger().warning(f"{e}")
         return
 
-    def destroy_node(self):
+    def destroy_node(self) -> None:
         self.get_logger().info("Node is destroy")
         for actor in self.npc_map.values():
             if actor is not None:
                 actor.destroy()
+        return
 
 
 def main():
